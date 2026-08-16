@@ -1,7 +1,10 @@
 (in-package :get-notion-recipe)
 
-;; .envの読み込み
-(cl-dotenv:load-env #P".env")
+;; .envの読み込み(開発環境の場合のみ)
+(let ((env-mode (uiop:getenv "ENV_MODE")))
+  (when (and env-mode
+             (string= env-mode "DEV"))
+    (cl-dotenv:load-env #P".env")))
 
 ;; 定数の設定
 (defparameter *api-key* (uiop:getenv "NOTION_API_KEY"))
