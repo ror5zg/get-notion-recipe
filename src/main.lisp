@@ -5,6 +5,7 @@
 
 ;; 定数の設定
 (defparameter *api-key* (uiop:getenv "NOTION_API_KEY"))
+(defparameter *json-path* (uiop:getenv "RECIPE_JSON_PATH"))
 (defparameter *data-src-id* "32be0ebb-24b5-801a-bacf-000be14cf091")
 (defparameter *api-version* "2026-03-11")
 (defparameter *page-size* 100)
@@ -32,7 +33,7 @@
                                (cons "Content-Type" "application/json"))
                 :content (jonathan:to-json (list :|page_size| page-size)))
     (format nil "Body: ~A~%Status: ~A~%Headers: ~A~%URI: ~A~%" body status headers uri)
-    (save-pretty-json body "response.json")))
+    (save-pretty-json body *json-path*)))
 
 ;; メイン処理
 (defun main ()
