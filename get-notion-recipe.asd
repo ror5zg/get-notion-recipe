@@ -4,7 +4,8 @@
   :depends-on ("dexador"
                "shasht"
                "jonathan"
-               "cl-dotenv")
+               "cl-dotenv"
+               "log4cl")
   :serial t
   :components ((:module "src"
                 :components
